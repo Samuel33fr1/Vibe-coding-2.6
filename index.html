@@ -1,78 +1,95 @@
 <!DOCTYPE html>
 <html lang="sk">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Náhodný Rozvrh Dňa</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <main class="app-shell">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">Náhodný Rozvrh Dňa</p>
-        <h1>Generátor denného plánu pre žiaka</h1>
-        <p>Vytvor si zoznam aktivít a app ti vygeneruje náhodný denný timeline s prestávkami.</p>
-      </div>
-      <button id="printSchedule" class="button secondary">🖨️ Tlačiť rozvrh</button>
-    </header>
-
-    <section class="layout-grid">
-      <article class="panel panel-form">
-        <h2>Pridať aktivitu</h2>
-        <form id="activityForm">
-          <label>
-            Názov aktivity
-            <input type="text" id="activityName" placeholder="Štúdium matematiky" required />
-          </label>
-
-          <label>
-            Trvanie (minúty)
-            <input type="number" id="activityDuration" placeholder="45" min="1" required />
-          </label>
-
-          <label>
-            Kategória
-            <select id="activityCategory" required>
-              <option value="studium">📚 Štúdium</option>
-              <option value="sport">🏃 Šport</option>
-              <option value="pauza">☕ Pauza</option>
-              <option value="ine">🎮 Iné</option>
-            </select>
-          </label>
-
-          <label>
-            Čas začiatku dňa
-            <input type="time" id="dayStart" value="08:00" required />
-          </label>
-
-          <div class="form-actions">
-            <button type="submit" class="button primary">Pridať aktivitu</button>
-          </div>
-        </form>
-
-        <div class="controls">
-          <button id="generateButton" class="button primary full">Vygeneruj rozvrh</button>
-          <button id="regenerateButton" class="button secondary full" disabled>Znova vygenerovať</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Náhodný Rozvrh Dňa</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Náhodný Rozvrh Dňa</p>
+          <h1>Generátor denného plánu pre žiaka</h1>
+          <p>
+            Vytvor si zoznam aktivít a app ti vygeneruje náhodný denný timeline
+            s prestávkami.
+          </p>
         </div>
-      </article>
+        <button id="printSchedule" class="button secondary">
+          🖨️ Tlačiť rozvrh
+        </button>
+      </header>
 
-      <article class="panel panel-list">
-        <h2>Zoznam aktivít</h2>
-        <div id="activityList" class="activity-list empty">
-          <p>Pridaj prvú aktivitu, aby si mohol vytvoriť rozvrh.</p>
+      <section class="layout-grid">
+        <article class="panel panel-form">
+          <h2>Pridať aktivitu</h2>
+          <form id="activityForm">
+            <label>
+              Názov aktivity
+              <input
+                type="text"
+                id="activityName"
+                placeholder="Štúdium matematiky"
+                required
+              />
+            </label>
+
+            <label>
+              Trvanie (minúty)
+              <input
+                type="number"
+                id="activityDuration"
+                placeholder="45"
+                min="1"
+                required
+              />
+            </label>
+
+            <label>
+              Kategória
+              <select id="activityCategory" required>
+                <option value="studium">📚 Štúdium</option>
+                <option value="sport">🏃 Šport</option>
+                <option value="pauza">☕ Pauza</option>
+                <option value="ine">🎮 Iné</option>
+              </select>
+            </label>
+
+            <label>
+              Čas začiatku dňa
+              <input type="time" id="dayStart" value="08:00" required />
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="button primary">
+                Pridať aktivitu
+              </button>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel panel-activities">
+          <h2>Zoznam aktivít</h2>
+          <div id="activityList" class="activity-list"></div>
+          <button id="generateButton" class="button success full-width" disabled>
+            🎲 Vygeneruj rozvrh
+          </button>
+        </article>
+      </section>
+
+      <section class="timeline-section" id="timelineSection" style="display: none">
+        <div class="timeline-header">
+          <h2>Váš denný plán</h2>
+          <button id="regenerateButton" class="button secondary">
+            🔄 Znova vygenerovať
+          </button>
         </div>
-      </article>
-    </section>
+        <div id="timelineContainer" class="timeline"></div>
+      </section>
+    </main>
 
-    <section class="panel panel-timeline">
-      <h2>Vizuálny denný timeline</h2>
-      <div id="timelineContainer" class="timeline empty">
-        <p>Stlač "Vygeneruj rozvrh" a uvidíš poradie aktivít.</p>
-      </div>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
-</body>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
